@@ -3,7 +3,7 @@ pipeline {
     node {
       label 'jdk8'
     }
-    
+
   }
   stages {
     stage('build') {
@@ -16,12 +16,12 @@ pipeline {
     }
     stage('Test') {
       parallel {
-        stage('Test') {
+        stage('Chrome') {
           steps {
             echo 'Testing on Chrome'
           }
         }
-        stage('') {
+        stage('Safari') {
           steps {
             echo 'Testing on Safari....'
           }
