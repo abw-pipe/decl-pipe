@@ -5,9 +5,6 @@ pipeline {
     }
     
   }
-
-  
-
   stages {
     stage('build') {
       steps {
@@ -17,12 +14,23 @@ pipeline {
         sh 'java -version'
       }
     }
-    
-     
+    stage('Test') {
+      parallel {
+        stage('Test') {
+          steps {
+            echo 'Testing on Chrome'
+          }
+        }
+        stage('') {
+          steps {
+            echo 'Testing on Safari....'
+          }
+        }
+      }
+    }
     stage('Deploy') {
-     
       steps {
-        echo "Deploying...."
+        echo 'Deploying.....'
       }
     }
   }
@@ -30,5 +38,4 @@ pipeline {
     MY_NAME = 'adrian'
     SONAR = credentials('test-user')
   }
- 
 }
